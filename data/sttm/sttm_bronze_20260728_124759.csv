@@ -1,0 +1,20 @@
+source_schema,source_table,source_column,target_schema,target_table,target_column,transformation_type,transformation_logic
+bronze,sales_data_1,transaction_id,bronze,sales_data_1,transaction_id,copy,copy source as is
+bronze,sales_data_1,transaction_date,bronze,sales_data_1,transaction_date,standardize_date,coalesce(parse_date(transaction_date, 'MM/dd/yyyy'), parse_date(transaction_date, 'yyyy-MM-dd'))
+bronze,sales_data_1,store_id,bronze,sales_data_1,store_id,copy,copy source as is
+bronze,sales_data_1,product_id,bronze,sales_data_1,product_id,copy,copy source as is
+bronze,sales_data_1,product_name,bronze,sales_data_1,product_name,copy,copy source as is
+bronze,sales_data_1,category,bronze,sales_data_1,category,copy,copy source as is
+bronze,sales_data_1,quantity,bronze,sales_data_1,quantity,handle_negative,if quantity < 0 then 0 else quantity
+bronze,sales_data_1,unit_price,bronze,sales_data_1,unit_price,copy,copy source as is
+bronze,sales_data_1,total_amount,bronze,sales_data_1,total_amount,handle_negative,if total_amount < 0 then 0 else total_amount
+bronze,sales_data_1,customer_segment,bronze,sales_data_1,customer_segment,normalize_segment,case when lower(customer_segment) in ('prem', 'premium') then 'Premium' when lower(customer_segment) = 'loyal' then 'Loyal' else customer_segment end
+bronze,sales_data_1,payment_method,bronze,sales_data_1,payment_method,copy,copy source as is
+bronze,sales_data_1,_load_timestamp,bronze,sales_data_1,_load_timestamp,inject_metadata,current_timestamp
+bronze,sales_data_1,_source_file,bronze,sales_data_1,_source_file,inject_metadata,source_filename
+bronze,products_2,product_id,bronze,products_2,product_id,copy,copy source as is
+bronze,products_2,product_name,bronze,products_2,product_name,copy,copy source as is
+bronze,products_2,category,bronze,products_2,category,copy,copy source as is
+bronze,products_2,standard_price,bronze,products_2,standard_price,copy,copy source as is
+bronze,products_2,_load_timestamp,bronze,products_2,_load_timestamp,inject_metadata,current_timestamp
+bronze,products_2,_source_file,bronze,products_2,_source_file,inject_metadata,source_filename

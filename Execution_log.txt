@@ -1,0 +1,57 @@
+Execution_log.txt
+Date: 2026-07-28
+
+CLI Execution Trace
+-------------------
+Command used:
+python cli.py --files data/landing/sales_data_1.csv --intent "Which product category generated the highest total sales revenue?"
+
+Pipeline flow:
+1. Phase 1: Profile -> Bronze STTM
+   - Input CSV file copied into data/landing if needed.
+   - Profile generated via agents.profiler into data/profiles/profile_combined_<run_id>.json.
+   - Bronze STTM generated into data/sttm/sttm_bronze_<run_id>.csv.
+   - HITL gate displayed the Bronze STTM using pandas and optional tabulate.
+   - User was prompted: [y]es / [e]dit then re-review / [n]o abort.
+   - If the user chose [e], the STTM file was opened in the editor, then re-displayed for review.
+   - If the user chose [y], the pipeline continued.
+
+2. Phase 2: Bronze Execution -> Silver STTM
+   - Bronze execution wrote parquet to data/bronze_layer/sales_data_1_bronze_<run_id>.parquet.
+   - Silver STTM generated into data/sttm/sttm_silver_<run_id>.csv.
+   - HITL gate displayed the Silver STTM and again waited for [y]/[e]/[n].
+   - User approval moved the pipeline forward.
+
+3. Phase 3: Silver Execution -> Gold STTM
+   - Silver execution wrote parquet to data/silver_layer/sales_data_1_silver_<run_id>.parquet.
+   - Gold STTM generated into data/sttm/sttm_gold_<run_id>.csv.
+   - HITL gate displayed the Gold STTM for final review.
+   - User response determined whether to continue or abort.
+
+4. Phase 4: Gold Execution -> Report
+   - Gold execution produced gold parquet outputs in data/gold_layer/.
+   - Final report generated into reports/report_<run_id>.html and reports/report_<run_id>.json.
+
+HITL Details
+------------
+- The HITL logic is implemented in cli.py via the hitl_gate() function.
+- It prints the STTM table and waits for:
+  * y/yes -> accept and continue
+  * e/edit -> open the STTM file in the configured editor (or notepad on Windows) and re-display it
+  * n/no -> abort the pipeline at that layer
+- This ensures the user directly inspects Bronze, Silver, and Gold STTMs before execution proceeds.
+
+Final outputs produced in this repo:
+- reports/report_final2.html
+- reports/report_final2.json
+- data/silver_layer/sales_data_1_silver_final2.parquet
+- data/gold_layer/gold_sales_summary_final2.parquet
+- data/gold_layer/gold_top_category_final2.parquet
+
+Note on git push:
+- The current workspace does not appear to have a .git repository, and git is not available in this execution environment.
+- I created Execution_log.txt in the repo, but I cannot commit or push it from here.
+- Please run the following locally to add and push the file:
+  git add Execution_log.txt
+  git commit -m "Add execution trace log"
+  git push

@@ -1,0 +1,20 @@
+source_schema,source_table,source_column,target_schema,target_table,target_column,transformation_type,transformation_logic
+bronze,sales_data_1,transaction_id,bronze,sales_data_1,transaction_id,copy,copy as is
+bronze,sales_data_1,transaction_date,bronze,sales_data_1,transaction_date,date_format_standardization,parse date string in formats MM/dd/yyyy or yyyy-MM-dd and output yyyy-MM-dd
+bronze,sales_data_1,store_id,bronze,sales_data_1,store_id,copy,copy as is
+bronze,sales_data_1,product_id,bronze,sales_data_1,product_id,copy,copy as is
+bronze,sales_data_1,product_name,bronze,sales_data_1,product_name,copy,copy as is
+bronze,sales_data_1,category,bronze,sales_data_1,category,copy,copy as is
+bronze,sales_data_1,quantity,bronze,sales_data_1,quantity,data_cleaning,replace negative values with null or zero as per business rules
+bronze,sales_data_1,unit_price,bronze,sales_data_1,unit_price,copy,copy as is
+bronze,sales_data_1,total_amount,bronze,sales_data_1,total_amount,data_cleaning,set negative totals to null or recalc as quantity * unit_price if quantity and unit_price valid
+bronze,sales_data_1,customer_segment,bronze,sales_data_1,customer_segment,standardization,map 'Prem' to 'Premium'; keep others as is
+bronze,sales_data_1,payment_method,bronze,sales_data_1,payment_method,copy,copy as is
+bronze,sales_data_1,_load_timestamp,bronze,sales_data_1,_load_timestamp,metadata_injection,current system timestamp at load
+bronze,sales_data_1,_source_file,bronze,sales_data_1,_source_file,metadata_injection,name of the source file ingested
+bronze,products_2,product_id,bronze,products_2,product_id,copy,copy as is
+bronze,products_2,product_name,bronze,products_2,product_name,copy,copy as is
+bronze,products_2,category,bronze,products_2,category,copy,copy as is
+bronze,products_2,standard_price,bronze,products_2,standard_price,copy,copy as is
+bronze,products_2,_load_timestamp,bronze,products_2,_load_timestamp,metadata_injection,current system timestamp at load
+bronze,products_2,_source_file,bronze,products_2,_source_file,metadata_injection,name of the source file ingested

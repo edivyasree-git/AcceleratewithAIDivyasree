@@ -1,0 +1,10 @@
+transaction_id,transaction_date,store_id,product_id,product_name,category,quantity,unit_price,total_amount,customer_segment,payment_method
+TXN10046,01/15/2024,S09,P001,iPhone 15,Electronics,7,1034.37,7240.59,Loyal,Apple Pay
+TXN10078,2024-01-17,S10,P014,TRX Resistance Bands,Sport,7,55.79,390.53,Premium,PayPal
+RET10009,2024-03-03,S07,P012,Nespresso Machine,Home & Kitchen,-1,192.03,-192.03,Loyal,Apple Pay
+RET10004,2024-02-20,S06,P012,Nespresso Machine,Home & Kitchen,-2,193.82,-387.64,Premium,Apple Pay
+TXN10077,2024-01-05,S08,P016,CamelBak Water Bottle,Sports,3,30.63,91.89,Loyal,PayPal
+TXN10038,2024-01-01,S03,P003,AirPods Pro,Electronics,5,237.87,1189.35,Premium,Apple Pay
+TXN10040,03/22/2024,S05,P017,CeraVe Moisturizer,Beauty,4,17.45,69.8,Loyal,PayPal
+TXN10124,2024-02-25,S10,P002,Samsung Galaxy S24,Elec.,8,898.15,7185.2,Prem,Debit Card
+TXN10113,2024-03-30,S05,P016,CamelBak Water Bottle,Sports,6,30.33,181.98,Bgt,Debit Card

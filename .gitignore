@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+.env.local
+*.parquet
+audit_logs/
+reports/
+data/bronze_layer/
+data/silver_layer/
+data/gold_layer/
+.vscode/

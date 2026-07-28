@@ -1,0 +1,4 @@
+source_schema,source_table,source_column,target_schema,target_table,target_column,transformation_type,transformation_logic
+silver,sales_data_1_silver_20260728_131200,category,gold,gold_sales_summary,category,group_by,
+silver,sales_data_1_silver_20260728_131200,total_amount,gold,gold_sales_summary,total_sales,aggregate(SUM(total_amount)),
+gold,gold_sales_summary,category,gold,gold_top_category,top_category,map,select category with highest total_sales

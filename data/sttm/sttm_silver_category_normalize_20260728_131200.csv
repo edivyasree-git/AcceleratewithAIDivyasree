@@ -1,0 +1,2 @@
+source_schema,source_table,source_column,target_schema,target_table,target_column,transformation_type,transformation_logic
+silver,sales_data_1,category,silver,sales_data_1,category,map,Elec.=Electronics;Elec=Electronics;Sport=Sports;electronics=Electronics;sports=Sports

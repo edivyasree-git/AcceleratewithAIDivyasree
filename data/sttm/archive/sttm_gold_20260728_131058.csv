@@ -1,0 +1,3 @@
+source_schema,source_table,source_column,target_schema,target_table,target_column,transformation_type,transformation_logic
+silver,sales_data_1_silver_20260728_125436,category,gold,category_sales,total_category_sales,aggregate(SUM),sum(total_amount) grouped by category
+silver,sales_data_1_silver_20260728_125436,category,gold,category_sales,category,group_by,group data by category

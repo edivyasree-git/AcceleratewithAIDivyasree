@@ -1,0 +1,8 @@
+source_schema,source_table,source_column,target_schema,target_table,target_column,transformation_type,transformation_logic
+bronze,sales_data_1_20260728_124939,transaction_date,silver,sales_summary,transaction_date,date,coalesce(parse_date(transaction_date, 'MM/dd/yyyy'), parse_date(transaction_date, 'yyyy-MM-dd'))
+bronze,sales_data_1_20260728_124939,product_name,silver,sales_summary,product_name,strip,trim whitespace from product_name
+bronze,sales_data_1_20260728_124939,category,silver,sales_summary,category,title case,convert to title case for category
+bronze,sales_data_1_20260728_124939,quantity,silver,sales_summary,quantity,fill null,replace null with 0
+bronze,sales_data_1_20260728_124939,quantity,silver,sales_summary,quantity,drop null,remove records where quantity is null or quantity < 0
+bronze,sales_data_1_20260728_124939,total_amount,silver,sales_summary,total_amount,fill null,replace null with 0
+bronze,sales_data_1_20260728_124939,total_amount,silver,sales_summary,total_amount,drop null,remove records where total_amount is null or total_amount < 0
